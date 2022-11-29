@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "github.com/Y-Bro/go-grpcAuth/cmd/proto";
+
+message Login {
+    string user_name = 1;
+    string password = 2;
+}
+
+message Result {
+    string result = 1;
+}
+
+service AuthService {
+    rpc signin(Login) returns (Result);
+}
+
