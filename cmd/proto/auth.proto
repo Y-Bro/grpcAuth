@@ -14,6 +14,7 @@ message Result {
 }
 
 service AuthService {
-    rpc signin(Login) returns (Result);
+    rpc signup(Login) returns (Result);
+    rpc login(Login) returns (Result);
 }
 
