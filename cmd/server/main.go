@@ -5,6 +5,7 @@ import (
 	"net"
 
 	pb "github.com/Y-bro/go-grpcAuth/cmd/proto"
+	database "github.com/Y-bro/go-grpcAuth/internal/pkg/db/migrations/mysql"
 	"google.golang.org/grpc"
 )
 
@@ -24,6 +25,10 @@ func main() {
 
 	s := grpc.NewServer()
 	pb.RegisterAuthServiceServer(s, &Server{})
+
+	database.InitDb()
+
+	defer database.CloseDB()
 
 	if err := s.Serve(net); err != nil {
 		log.Fatal(err)
